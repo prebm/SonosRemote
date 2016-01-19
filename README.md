@@ -3,7 +3,7 @@ Sonos Remote
 
 While Sonos is a great solution for wireless speaker it sometimes lacks the support of a remote control. For easy tasks as play/pause, volume up/down, next/previous song it is easier to press a button on a remote than fiddling on your phone.
 
-With just a Raspberry Pi and an old apple remote (or any other) this is quite easy to achieve.
+With just a Raspberry Pi and an old apple remote (or any other remote) this is quite easy to achieve.
 
 
 Setup
@@ -126,17 +126,17 @@ Links
 -----
 
 *LIRC*
-http://www.dkographicdetails.com/myPi/?p=20
-https://learn.adafruit.com/using-an-ir-remote-with-a-raspberry-pi-media-center/
-http://alexba.in/blog/2013/01/06/setting-up-lirc-on-the-raspberrypi/
-http://www.spech.de/blog/article/universalfernbedienungrpi
-http://www.lirc.org/html/configure.html#lircrc_format
-http://lirc.sourceforge.net/remotes/apple/A1156
+- http://www.dkographicdetails.com/myPi/?p=20
+- https://learn.adafruit.com/using-an-ir-remote-with-a-raspberry-pi-media-center/
+- http://alexba.in/blog/2013/01/06/setting-up-lirc-on-the-raspberrypi/
+- http://www.spech.de/blog/article/universalfernbedienungrpi
+- http://www.lirc.org/html/configure.html#lircrc_format
+- http://lirc.sourceforge.net/remotes/apple/A1156
 
-https://github.com/tompreston/python-lirc
+- https://github.com/tompreston/python-lirc
 
 *Sonos*
-https://github.com/SoCo/SoCo
+- https://github.com/SoCo/SoCo
 
 *Service*
-http://blog.scphillips.com/posts/2013/07/getting-a-python-script-to-run-in-the-background-as-a-service-on-boot/
+- http://blog.scphillips.com/posts/2013/07/getting-a-python-script-to-run-in-the-background-as-a-service-on-boot/
