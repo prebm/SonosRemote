@@ -1,0 +1,41 @@
+begin
+remote = Apple_A1156
+button = KEY_KPPLUS
+prog = sore
+config = plus
+end
+
+begin
+remote = Apple_A1156
+button = KEY_KPMINUS
+prog = sore
+config = minus
+end
+
+begin
+remote = Apple_A1156
+button = KEY_PLAY
+prog = sore
+config = play
+end
+
+begin
+remote = Apple_A1156
+button = KEY_FASTFORWARD
+prog = sore
+config = next
+end
+
+begin
+remote = Apple_A1156
+button = KEY_REWIND
+prog = sore
+config = previous
+end
+
+begin
+remote = Apple_A1156
+button = KEY_MENU
+prog = sore
+config = menu
+end
