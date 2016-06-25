@@ -69,7 +69,7 @@ sudo cp "$DIR_PATH/lircd.conf" /etc/lirc/
 sudo cp "$DIR_PATH/lircrc" /etc/lirc/
 
 printf "\nCreated backups and edited files in /etc/lirc/ \n"
-#END
+
 ##### specific setup, IP #####
 
 # write Sonos Zones to file and read the file
@@ -91,9 +91,20 @@ read ZONE
 sudo sed -i -e "s/IP_ADDRESS='.*'/IP_ADDRESS='${IP_LIST[$ZONE]}'/g" "$DIR_PATH/config.py"
 
 printf "\nSaved chosen zone in $DIR_PATH/config.py \n"
+#END
 
 printf "\n#####\nRun sore.py to if it is working. \n"
 
 ##### Enable daemon #####
 
 # TODO
+
+##### Reboot #####
+
+printf "\nThe changes will take effect after the next reboot. Would you like to reboot now? \n"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) sudo shutdown -r now; break;;
+        No ) exit;;
+    esac
+done
