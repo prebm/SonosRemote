@@ -90,14 +90,30 @@ read ZONE
 # replace string in config.py
 sudo sed -i -e "s/IP_ADDRESS='.*'/IP_ADDRESS='${IP_LIST[$ZONE]}'/g" "$DIR_PATH/config.py"
 
+rm discovered.csv
+
 printf "\nSaved chosen zone in $DIR_PATH/config.py \n"
 #END
 
-printf "\n#####\nRun sore.py to if it is working. \n"
-
 ##### Enable daemon #####
 
-# TODO
+# Only for systemd!!!
+
+printf "\n###\n Configuring Service \n###\n"
+
+# change dir path
+sudo sed -i -e "s/ExecStart=\/home\/pi\/SonosRemote\/sore.py/ExecStart=$DIR_PATH/sore.py/g" "$DIR_PATH/sore.service"
+
+# copy service
+sudo cp "$DIR_PATH/sore.service" /etc/systemd/system/
+sudo chmod 664 /etc/systemd/system/sore.service
+
+# enable service
+sudo systemctl daemon-reload
+sudo systemctl enable sore.service
+systemctl status sore.service
+
+printf "\nCreated and enabled sore.service \n"
 
 ##### Reboot #####
 
