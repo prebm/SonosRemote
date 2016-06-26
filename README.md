@@ -11,25 +11,42 @@ Setup
 
 Components used:
 
-- Raspberry Pi 2 Model B
+- Raspberry Pi
 - IR Receiver Sensor - TSOP38238
 - Apple Remote A1156
 
 
-Install
--------
-
-The following section describes how to install the IR Receiver Sensor and the requried software to your Raspberry Pi. **The current script is optimized for use on Raspbian Wheezy**. There are some known issues with Raspbian Jessie due to the switch to `systemd`. The automatic start at boot is not working at the moment. There will be another version for Jessie in near future.
-
-Please refer to the link section at the end of this Readme. It contains useful links for troubleshooting.
-
-### Hardware
+Hardware
+--------
 
 Connect your Sensor to 3.3V, GND and GPIO 18. Please refer to [the excellent Adafruit Tutorial](https://learn.adafruit.com/using-an-ir-remote-with-a-raspberry-pi-media-center/hardware) to see an illustration.
 
-### Software
+If you are using another remote check [the list](http://lirc.sourceforge.net/remotes/) and edit `lircd.conf` and `lircrc` accordingly.
 
-**Prerequisites**
+
+Autmatic Install on Raspbian Jessie
+-----------------------------------
+
+The install script `install.sh` is a convenient way for automatic install of all required software and configuration of the system. *For detailed instructions refer to the next section.*
+
+- Clone this repository on your Raspberry Pi running Raspbian Jessie
+```
+git clone https://github.com/prebm/SonosRemote.git
+```
+- Execute `install.sh` with root privileges
+```
+sudo ./install.sh
+```
+- When prompted enter the desired Sonos zone the remote will work for.
+- Reboot your Raspberry Pi and have fun!
+
+
+Manual Install with Instructions for older Raspbians
+----------------------------------------------------
+
+The following section describes how to install the IR Receiver Sensor and the requried software to your Raspberry Pi. At the end, there is a part with instructions how to enable the daemon for automatic start at boot for older versions of Raspbian with init.d and newer versions (starting with Jessie) with systemd.
+
+Please refer to the link section at the end of this Readme. It contains useful links for troubleshooting.
 
 - Install GIT:
 ```
@@ -87,16 +104,31 @@ Player: Kitchen at IP: <SoCo object at ip 192.168.1.46>
 ```
 sudo chmod +x sore.py
 ```
-- Copy `sore` to `/etc/init.d` and edit the paths if necessary
-- Make `/etc/init.d/sore` executable
-```
-sudo chmod +x sore
-```
-- and register the init script to start at boot with
-```
-sudo update-rc.d sore defaults
-```
-- Reboot your Raspberry and have fun!
+- **For Raspbian Wheezy**
+    - Copy `sore` to `/etc/init.d` and edit the paths if necessary
+    - Make `/etc/init.d/sore` executable
+    ```
+    sudo chmod +x sore
+    ```
+    - and register the init script to start at boot with
+    ```
+    sudo update-rc.d sore defaults
+    ```
+- **For Raspbian Jessie**
+	- Copy `sore.service` to `/etc/systemd/system/` and edit the paths if necessary
+	```
+    sudo cp sore.service /etc/systemd/system/
+    ```
+    - Make sure `/etc/systemd/system/sore.service` has the required rights
+    ```
+    sudo chmod 664 sore.service
+    ```
+    - reload systemd daemon and enable the service
+    ```
+    sudo systemctl daemon-reload
+    sudo systemctl enable sore.service
+    ```
+- Reboot your Raspberry Pi and have fun!
 
 
 Running
@@ -104,6 +136,13 @@ Running
 
 We installed a service to run at boot. So after booting your Raspberry Pi everything should work out of the box. You can use the following commands:
 
+- **For Raspbian Jessie**
+```
+sudo systemctl status sore.service
+sudo systemctl start sore.service
+sudo systemctl stop sore.service
+```
+- **For Raspbian Wheezy**
 ```
 sudo /etc/init.d/sore start
 sudo /etc/init.d/sore stop
