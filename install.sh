@@ -2,7 +2,7 @@
 
 ##### install prerequisites #####
 #: <<'END'
-printf "\n###\n Start update and upgrade \n###\n"
+printf "\n###\n Start with update \n###\n"
 sudo apt-get update
 #sudo apt-get -y upgrade
 
@@ -102,7 +102,7 @@ printf "\nSaved chosen zone in $DIR_PATH/config.py \n"
 printf "\n###\n Configuring Service \n###\n"
 
 # change dir path
-sudo sed -i -e "s/ExecStart=\/home\/pi\/SonosRemote\/sore.py/ExecStart=$DIR_PATH\/sore.py/g" "$DIR_PATH/sore.service"
+sudo sed -i -e "s|ExecStart=\/home\/pi\/SonosRemote\/sore\.py|ExecStart=$DIR_PATH\/sore\.py|g" "$DIR_PATH/sore.service"
 
 # copy service
 sudo cp "$DIR_PATH/sore.service" /etc/systemd/system/
