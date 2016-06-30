@@ -5,6 +5,7 @@ While Sonos is a great solution for wireless speaker it sometimes lacks the supp
 
 With just a Raspberry Pi and an old apple remote (or any other remote) this is quite easy to achieve.
 
+![Pi with Remote](SonosRemote.jpg)
 
 Setup
 -----
@@ -24,7 +25,7 @@ Connect your Sensor to 3.3V, GND and GPIO 18. Please refer to [the excellent Ada
 If you are using another remote check [the list](http://lirc.sourceforge.net/remotes/) and edit `lircd.conf` and `lircrc` accordingly.
 
 
-Autmatic Install on Raspbian Jessie
+Automatic Install on Raspbian Jessie
 -----------------------------------
 
 The install script `install.sh` is a convenient way for automatic install of all required software and configuration of the system. *For detailed instructions refer to the next section.*
@@ -44,7 +45,7 @@ sudo ./install.sh
 Manual Install with Instructions for older Raspbians
 ----------------------------------------------------
 
-The following section describes how to install the IR Receiver Sensor and the requried software to your Raspberry Pi. At the end, there is a part with instructions how to enable the daemon for automatic start at boot for older versions of Raspbian with init.d and newer versions (starting with Jessie) with systemd.
+The following section describes how to install the IR Receiver Sensor and the required software to your Raspberry Pi. At the end, there is a part with instructions how to enable the daemon for automatic start at boot for older versions of Raspbian with init.d and newer versions (starting with Jessie) with systemd.
 
 Please refer to the link section at the end of this Readme. It contains useful links for troubleshooting.
 
@@ -73,7 +74,7 @@ sudo pip install soco
 git clone https://github.com/prebm/SonosRemote.git
 ```
 
-I am running Raspbian 7.8 with the Kernel 4.1.7, for Kernels before 3.18 one step is different
+I am running Raspbian 8.0 with the Kernel 4.4, for Kernels before 3.18 one step is different
 
 - Depending on your Kernel (`uname -a`):
 	- **≥ 3.18**: Edit `/boot/config.txt` and uncomment the line
@@ -104,7 +105,7 @@ Player: Kitchen at IP: <SoCo object at ip 192.168.1.46>
 ```
 sudo chmod +x sore.py
 ```
-- **For Raspbian Wheezy**
+- **For Raspbian Wheezy and before**
     - Copy `sore` to `/etc/init.d` and edit the paths if necessary
     - Make `/etc/init.d/sore` executable
     ```
@@ -114,7 +115,7 @@ sudo chmod +x sore.py
     ```
     sudo update-rc.d sore defaults
     ```
-- **For Raspbian Jessie**
+- **For Raspbian Jessie and later**
 	- Copy `sore.service` to `/etc/systemd/system/` and edit the paths if necessary
 	```
     sudo cp sore.service /etc/systemd/system/
@@ -150,6 +151,7 @@ sudo /etc/init.d/sore restart
 sudo /etc/init.d/sore status
 ```
 
+
 Troubleshooting
 ---------------
 
@@ -160,6 +162,7 @@ I have added a basic logging mechanism which logs to sore.log. To save disk spac
 ```
 
 If the service is not starting up at boot, try to restart it manually. It is a known issue that the startup at boot is not working if you are running Jessie.
+
 
 Links
 -----
