@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
+# TODO: test check for root
+# Make sure script is run as root.
+# if [ "$(id -u)" != "0" ]; then
+#   echo "Must be run as root with sudo! Try: sudo ./install.sh"
+#   exit 1
+# fi
+
 ##### install prerequisites #####
-#: <<'END'
+
 printf "\n###\n Start with update \n###\n"
 sudo apt-get update
 #sudo apt-get -y upgrade
@@ -93,7 +100,6 @@ sudo sed -i -e "s/IP_ADDRESS='.*'/IP_ADDRESS='${IP_LIST[$ZONE]}'/g" "$DIR_PATH/c
 rm discovered.csv
 
 printf "\nSaved chosen zone in $DIR_PATH/config.py \n"
-#END
 
 ##### Enable daemon #####
 
